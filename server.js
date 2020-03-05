@@ -50,8 +50,34 @@ app.post('/send-verify-email', function(req, res){
       res.send('success')
     }
   });
+});
 
 
+
+app.get('/send-verify-email', function(req, res){
+  res.send('success')
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'bavnsofts@gmail.com',
+      pass: 'jagjit@123'
+    }
+  });
+
+  var mailOptions = {
+    from: 'bavnsofts@gmail.com',
+    to: req.body.email,
+    subject: 'Arcskill account verification',
+    html: '<p>Dear '+req.body.user_name+',</p><p>Please verify your Arcskill account by clicking on below link</p><p><a href="https://www.arcskill.com/back_end/verify_user_email.php?email='+req.body.email+'">Verfiy your email</a></p><p>Thanks and Regrads<br> Arcskill Team</p>'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      res.send('success')
+    }
+  });
 });
 
 
