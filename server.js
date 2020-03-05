@@ -55,7 +55,6 @@ app.post('/send-verify-email', function(req, res){
 
 
 app.get('/send-verify-email', function(req, res){
-  res.send('success')
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
