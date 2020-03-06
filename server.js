@@ -34,8 +34,8 @@ app.get('/send-verify-email/:email/:user_name', function(req, res){
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'bavnsofts@gmail.com',
-      pass: 'jagjit@123'
+      user: 'satpals.bavnsofts@gmail.com',
+      pass: 'satpal@123'
     }
   });
 
