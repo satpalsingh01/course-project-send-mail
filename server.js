@@ -46,8 +46,6 @@ app.get('/send-verify-email/:email/:user_name', function(req, res){
     html: '<p>Dear '+req.params.user_name+',</p><p>Please verify your Arcskill account by clicking on below link</p><p><a href="https://www.arcskill.com/back_end/verify_user_email.php?email='+req.params.email+'">Verfiy your email</a></p><p>Thanks and Regrads<br> Arcskill Team</p>'
   };
 
-  console.log(mailOptions,' ----------------------------------------------------------------------------------------------------mailOptions')
-
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
