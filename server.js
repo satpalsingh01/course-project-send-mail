@@ -29,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.get('/send-verify-email/:email/:user_name', function(req, res){
+  console.log(req.params,' params')
+
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
