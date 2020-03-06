@@ -29,8 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.get('/send-verify-email/:email/:user_name', function(req, res){
-  console.log(req.params,' params')
-
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -41,7 +39,7 @@ app.get('/send-verify-email/:email/:user_name', function(req, res){
 
   var mailOptions = {
     from: 'bavnsofts@gmail.com',
-    to: 'satpals.bavnsofts@gmail.com',
+    to: req.params.email,
     subject: 'Arcskill account verification',
     html: '<p>Dear '+req.params.user_name+',</p><p>Please verify your Arcskill account by clicking on below link</p><p><a href="https://www.arcskill.com/back_end/verify_user_email.php?email='+req.params.email+'">Verfiy your email</a></p><p>Thanks and Regrads<br> Arcskill Team</p>'
   };
@@ -49,6 +47,7 @@ app.get('/send-verify-email/:email/:user_name', function(req, res){
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
+      res.send('error -'+error)
     } else {
       res.send('success')
     }
