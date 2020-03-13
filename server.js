@@ -55,5 +55,31 @@ app.get('/send-verify-email/:email/:user_name', function(req, res){
 });
 
 
+app.get('/forgotten-password/:email/:user_name/:password', function(req, res){
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'englishhsln@gmail.com',
+      pass: 'intrictec@VIRA'
+    }
+  });
+
+  var mailOptions = {
+    from: 'bavnsofts@gmail.com',
+    to: req.params.email,
+    subject: 'Arcskill account details',
+    html: '<p>Dear '+req.params.user_name+',</p><p>Your arcskill account details are given as below:</p><p>Email: '+req.params.email+'</p><p>Password: '+req.params.password+'</p><p><a href="https://www.arcskill.com/login.php">Login Now</a></p><p>Thanks and Regrads<br> Arcskill Team</p>'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+      res.send('error -'+error)
+    } else {
+      res.send('success')
+    }
+  });
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log("Server started on port " + port));
