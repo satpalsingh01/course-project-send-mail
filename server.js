@@ -30,15 +30,18 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/send-verify-email/:email/:user_name', function(req, res){
   var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
     auth: {
-      user: 'englishhsln@gmail.com',
-      pass: 'intrictec@VIRA'
+      user: 'arcskill01@gmail.com',
+      pass: 'arcskill@123'
     }
   });
 
   var mailOptions = {
-    from: 'bavnsofts@gmail.com',
+    from: 'arcskill01@gmail.com',
     to: req.params.email,
     subject: 'Arcskill account verification',
     html: '<p>Dear '+req.params.user_name+',</p><p>Please verify your Arcskill account by clicking on below link</p><p><a href="https://www.arcskill.com/back_end/verify_user_email.php?email='+req.params.email+'">Verfiy your email</a></p><p>Thanks and Regrads<br> Arcskill Team</p>'
@@ -57,10 +60,13 @@ app.get('/send-verify-email/:email/:user_name', function(req, res){
 
 app.get('/forgotten-password/:email/:user_name/:password', function(req, res){
   var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
     auth: {
-      user: 'englishhsln@gmail.com',
-      pass: 'intrictec@VIRA'
+      user: 'arcskill01@gmail.com',
+      pass: 'arcskill@123'
     }
   });
 
